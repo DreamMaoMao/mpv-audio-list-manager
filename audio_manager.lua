@@ -8,7 +8,7 @@ local rate = 1.5
 -- 全局变量和实用函数
 local styleOn = mp.get_property("osd-ass-cc/0")
 local audioTracks = {}
-local currentSlot = 0
+local currentSlot = 1
 local currentPage = 1
 local maxPage = 1
 local active = false
@@ -125,11 +125,15 @@ function displayAudioTracks()
   local display = styleOn .. "{\\b1}Audio Tracks page " .. currentPage .. "/" .. maxPage .. ":{\\b0}"
   for i = startSlot, endSlot do
     local track = audioTracks[i]
+    if (track.title or track.lang or track.src) == nil then
+      goto nextSlot
+    end
     local selection = ""
     if i == currentSlot then
       selection = "{\\b1}{\\c&H00FFFF&}>"
     end
     display = display .. "\n" .. selection .. i .. ": " .. (track.title or track.lang or track.src) .. "{\\r}"
+    ::nextSlot::
   end
   mp.osd_message(display, rate)
 end
