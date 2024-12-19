@@ -10,6 +10,8 @@ copy `audio_manager.lua` to `~/.config/mpv/scripts/`
 a   script_message audio-menu
 
 # default key bindings
-j/down/k/up to move selection
-enter to load the select
-esc to close menu
+- j/down/k/up to move selection
+
+- enter to load the select
+
+- esc to close menu
