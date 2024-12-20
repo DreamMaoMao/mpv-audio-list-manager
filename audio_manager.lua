@@ -142,6 +142,10 @@ end
 function loadAudioTrack(slot)
   if slot >= 1 and slot <= #audioTracks then
     local track = audioTracks[slot]
+    if (track.title or track.lang or track.src) == nil then
+      abort(styleOn.."{\\c&H0000FF&}{\\b1}Can't find the audio track at slot " .. slot)
+      return
+    end
     mp.set_property_native("aid", track.id)
     mp.osd_message(string.format("Loaded audio track: %s", track.title or track.lang or track.src), 2)
     if closeAfterLoad then
